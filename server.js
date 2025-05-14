@@ -4,6 +4,8 @@ const userRoutes = require('./routes/users');
 const authRoutes = require('./routes/auth');
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use('/users', userRoutes);
 app.use('/', authRoutes);
 

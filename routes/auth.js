@@ -13,7 +13,8 @@ router.post('/register', async (req, res) => {
     const user = await User.create({ nome, email, senha: hash });
     res.status(201).json(user);
   } catch (err) {
-    res.status(400).json({ error: 'Erro ao registrar usuário' });
+    console.log("Bruh")
+    res.status(400).json({ error: 'Erro ao registrar usuário' +err});
   }
 });
 
