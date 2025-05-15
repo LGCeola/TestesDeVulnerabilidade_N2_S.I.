@@ -5,20 +5,17 @@ const { User } = require('../models');
 const router = express.Router();
 const secret = 'sua_chave_secreta';
 
-// Registro
 router.post('/register', async (req, res) => {
-  const { nome, email, senha } = req.body;
   try {
+    const { nome, email, senha } = req.body;
     const hash = await bcrypt.hash(senha, 10);
-    const user = await User.create({ nome, email, senha: hash });
-    res.status(201).json(user);
+    await User.create({ nome, email, senha: hash });
+    res.status(201).json({ message: 'Usuário registrado com sucesso!' });
   } catch (err) {
-    console.log("Bruh")
-    res.status(400).json({ error: 'Erro ao registrar usuário' +err});
+    res.status(400).json({ error: 'Erro ao registrar usuário' });
   }
 });
 
-// Login
 router.post('/login', async (req, res) => {
   const { email, senha } = req.body;
   try {

